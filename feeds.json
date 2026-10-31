@@ -1,0 +1,36 @@
+{
+  "topics": [
+    {
+      "name": "Fashion",
+      "feeds": [
+        { "name": "Vogue", "url": "https://www.vogue.com/feed/rss" },
+        { "name": "Guardian Fashion", "url": "https://www.theguardian.com/fashion/rss" }
+      ]
+    },
+    {
+      "name": "NZ News",
+      "feeds": [
+        { "name": "RNZ", "url": "https://www.rnz.co.nz/rss/national.xml" },
+        { "name": "NZ Herald", "url": "https://www.nzherald.co.nz/arc/outboundfeeds/rss/curated/78/?outputType=xml" },
+        { "name": "The Spinoff", "url": "https://thespinoff.co.nz/feed" }
+      ]
+    },
+    {
+      "name": "Politics",
+      "feeds": [
+        { "name": "RNZ Politics", "url": "https://www.rnz.co.nz/rss/political.xml" },
+        { "name": "Guardian World", "url": "https://www.theguardian.com/world/rss" },
+        { "name": "Politico", "url": "https://rss.politico.com/politics-news.xml" }
+      ]
+    },
+    {
+      "name": "Music",
+      "feeds": [
+        { "name": "Pitchfork News", "url": "https://pitchfork.com/feed/feed-news/rss" },
+        { "name": "Pitchfork Reviews", "url": "https://pitchfork.com/feed/feed-album-reviews/rss" },
+        { "name": "Stereogum", "url": "https://www.stereogum.com/feed/" },
+        { "name": "Guardian Music", "url": "https://www.theguardian.com/music/rss" }
+      ]
+    }
+  ]
+}
