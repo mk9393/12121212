@@ -1,0 +1,213 @@
+<title>Kwassont Quest</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+<style>
+/* Layout: one handheld console filling the phone screen — screen on top, controls below. */
+:root {
+  --shell: #d9d2c4;
+  --shell-shadow: #b8ae9c;
+  --bezel: #4b4656;
+  --bezel-ink: #a9a3b8;
+  --led: #e2465a;
+  --dpad: #2c2a33;
+  --dpad-hi: #45424f;
+  --btn: #a3304f;
+  --btn-hi: #c24768;
+  --pill: #8c8494;
+  --ink: #3d3647;
+  --brand: #2f3a8f;
+  --pixel: "Press Start 2P", ui-monospace, "Courier New", monospace;
+  color-scheme: light;
+}
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--shell);
+  color: var(--ink);
+  overscroll-behavior: none;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.console {
+  height: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-block: 12px;
+  box-sizing: border-box;
+  gap: 10px;
+}
+.bezel {
+  background: var(--bezel);
+  border-radius: 10px 10px 34px 10px;
+  padding: 10px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.bezel-top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 7px/1 var(--pixel);
+  color: var(--bezel-ink);
+  letter-spacing: 0.08em;
+}
+.bezel-top .rule { flex: 1; height: 2px; background: var(--bezel-ink); opacity: 0.5; }
+.led { width: 7px; height: 7px; border-radius: 50%; background: var(--led); box-shadow: 0 0 6px var(--led); }
+#screen {
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  background: #e0f8d0;
+  max-width: 100%;
+}
+.brand {
+  font: 11px/1.2 var(--pixel);
+  color: var(--brand);
+  text-align: left;
+  padding-left: 4px;
+  letter-spacing: 0.02em;
+}
+.brand small { font-size: 7px; color: var(--ink); opacity: 0.7; margin-left: 6px; }
+.controls {
+  flex: 1;
+  position: relative;
+  min-height: 210px;
+}
+#dpad {
+  position: absolute;
+  left: 2%;
+  top: 14px;
+  width: 136px;
+  height: 136px;
+  touch-action: none;
+}
+#dpad .bar {
+  position: absolute;
+  background: var(--dpad);
+  border-radius: 6px;
+  box-shadow: 0 3px 0 var(--shell-shadow);
+}
+#dpad .h { left: 0; top: 46px; width: 136px; height: 44px; }
+#dpad .v { left: 46px; top: 0; width: 44px; height: 136px; }
+#dpad .hub { position: absolute; left: 56px; top: 56px; width: 24px; height: 24px; border-radius: 50%; background: var(--dpad-hi); }
+#dpad .arrow { position: absolute; width: 0; height: 0; border: 7px solid transparent; opacity: 0.55; }
+#dpad .au { left: 61px; top: 10px; border-bottom-color: #8b8796; }
+#dpad .ad { left: 61px; bottom: 10px; border-top-color: #8b8796; }
+#dpad .al { left: 10px; top: 61px; border-right-color: #8b8796; }
+#dpad .ar { right: 10px; top: 61px; border-left-color: #8b8796; }
+#dpad.u .au, #dpad.d .ad, #dpad.l .al, #dpad.r .ar { opacity: 1; border-color: transparent; }
+#dpad.u .au { border-bottom-color: #fff; }
+#dpad.d .ad { border-top-color: #fff; }
+#dpad.l .al { border-right-color: #fff; }
+#dpad.r .ar { border-left-color: #fff; }
+.ab {
+  position: absolute;
+  right: 2%;
+  top: 22px;
+  width: 150px;
+  height: 120px;
+  transform: rotate(-22deg);
+}
+.btn {
+  position: absolute;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--btn);
+  box-shadow: 0 4px 0 #6d1f35;
+  color: transparent;
+  touch-action: none;
+  cursor: pointer;
+  padding: 0;
+}
+.btn.down { background: var(--btn-hi); transform: translateY(3px); box-shadow: 0 1px 0 #6d1f35; }
+.btn-a { right: 0; top: 0; }
+.btn-b { left: 0; top: 34px; }
+.ab .lbl { position: absolute; font: 10px/1 var(--pixel); color: var(--brand); }
+.ab .la { right: 24px; top: 72px; }
+.ab .lb { left: 24px; top: 106px; }
+.pills {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 26px;
+}
+.pill-wrap { display: flex; flex-direction: column; align-items: center; gap: 7px; transform: rotate(-22deg); }
+.pill {
+  width: 52px; height: 15px;
+  border-radius: 8px;
+  border: 0;
+  background: var(--pill);
+  box-shadow: 0 2px 0 var(--shell-shadow);
+  touch-action: none;
+  padding: 0;
+  cursor: pointer;
+}
+.pill.down { background: #6f6878; }
+.pill-wrap span { font: 7px/1 var(--pixel); color: var(--brand); letter-spacing: 0.05em; }
+.speaker {
+  position: absolute;
+  right: 6%;
+  bottom: 6px;
+  display: grid;
+  grid-template-columns: repeat(6, 4px);
+  gap: 5px;
+  transform: rotate(-28deg);
+}
+.speaker i { display: block; width: 4px; height: 26px; border-radius: 2px; background: var(--shell-shadow); }
+.btn:focus-visible, .pill:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
+@media (max-height: 640px) {
+  .controls { min-height: 180px; }
+  #dpad { transform: scale(0.85); transform-origin: left top; }
+  .ab { transform: rotate(-22deg) scale(0.85); }
+  .speaker { display: none; }
+}
+</style>
+
+<div class="console" id="console">
+  <div class="bezel" id="bezel">
+    <div class="bezel-top"><span class="led" aria-hidden="true"></span><span>POWER</span><span class="rule"></span><span>DOT MATRIX WITH CROISSANT</span><span class="rule"></span></div>
+    <canvas id="screen" width="160" height="144" aria-label="Kwassont Quest game screen"></canvas>
+  </div>
+  <div class="brand">KWASSONT QUEST<small>POCKET EDITION</small></div>
+  <div class="controls" id="controls">
+    <div id="dpad" role="group" aria-label="Direction pad">
+      <div class="bar h"></div><div class="bar v"></div><div class="hub"></div>
+      <div class="arrow au"></div><div class="arrow ad"></div><div class="arrow al"></div><div class="arrow ar"></div>
+    </div>
+    <div class="ab">
+      <button class="btn btn-b" data-k="b" aria-label="B button">B</button>
+      <button class="btn btn-a" data-k="a" aria-label="A button">A</button>
+      <span class="lbl lb" aria-hidden="true">B</span>
+      <span class="lbl la" aria-hidden="true">A</span>
+    </div>
+    <div class="pills">
+      <div class="pill-wrap"><button class="pill" data-k="select" aria-label="Select button: sound on or off"></button><span>SELECT</span></div>
+      <div class="pill-wrap"><button class="pill" data-k="start" aria-label="Start button: menu"></button><span>START</span></div>
+    </div>
+    <div class="speaker" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+</div>
+
+<script src="engine.js"></script>
+<script src="art.js"></script>
+<script src="data.js"></script>
+<script src="games.js"></script>
+<script src="world.js"></script>
+<script src="main.js"></script>
